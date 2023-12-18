@@ -1,5 +1,5 @@
 <template>
-  <view class="content">
+  <view class="content w-1">
     <image class="logo" src="/static/logo.png" />
     <view class="text-area">
       <text class="title">{{ title }}</text>
@@ -8,8 +8,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-const title = ref('Hello')
+import { ref } from "vue";
+const title = ref("Hello");
 </script>
 
 <style>
