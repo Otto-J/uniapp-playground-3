@@ -1,41 +1,100 @@
 <template>
-  <view class="content">
-    <image class="logo" src="/static/logo.png" />
-    <view class="text-area">
-      <text class="title">{{ title }}</text>
-    </view>
-  </view>
+	<view>
+		<page-head :title="title"></page-head>
+		<view class="uni-padding-wrap uni-common-mt" v-if="showVideo">
+			<view>
+				<video id="myVideo" src="https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/2minute-demo.mp4"
+					@error="videoErrorCallback" :danmu-list="danmuList" enable-danmu danmu-btn controls
+					poster="https://web-assets.dcloud.net.cn/unidoc/zh/poster.png"></video>
+			</view>
+			<!-- #ifndef MP-ALIPAY || MP-TOUTIAO || MP-KUAISHOU || MP-LARK || MP-JD -->
+			<view class="uni-list uni-common-mt">
+				<view class="uni-list-cell">
+					<view>
+						<view class="uni-label">弹幕内容</view>
+					</view>
+					<view class="uni-list-cell-db">
+						<input v-model="danmuValue" class="uni-input" type="text" placeholder="在此处输入弹幕内容" />
+					</view>
+				</view>
+			</view>
+			<view class="uni-btn-v">
+				<button @click="sendDanmu" class="page-body-button">发送弹幕</button>
+			</view>
+			<!-- #endif -->
+		</view>
+	</view>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-const title = ref('Hello')
+<script>
+	export default {
+		data() {
+			return {
+				title: 'video',
+				src: '',
+				danmuList: [{
+						text: '要显示的文本00',
+						color: '#ff00ff',
+						time: 2
+					},
+					{
+						text: '要显示的文本11',
+						color: '#00ffc9',
+						time: 4
+					},
+					{
+						text: '要显示的文本33',
+						color: '#4700ff',
+						time: 8
+					}
+				],
+				danmuValue: '',
+				showVideo: false
+			}
+		},
+		onReady: function(res) {
+			// #ifndef MP-ALIPAY || MP-TOUTIAO
+			this.videoContext = uni.createVideoContext('myVideo')
+			// #endif
+			// #ifdef APP-PLUS || MP-BAIDU
+			setTimeout(() => {
+				this.showVideo = true
+			}, 350)
+			// #endif
+			// #ifndef APP-PLUS || MP-BAIDU
+			this.showVideo = true
+			// #endif
+		},
+		methods: {
+			sendDanmu: function() {
+				this.videoContext.sendDanmu({
+					text: this.danmuValue,
+					color: this.getRandomColor()
+				});
+				this.danmuValue = '';
+			},
+			videoErrorCallback: function(e) {
+				uni.showModal({
+					content: e.target.errMsg,
+					showCancel: false
+				})
+			},
+			getRandomColor: function() {
+				const rgb = []
+				for (let i = 0; i < 3; ++i) {
+					let color = Math.floor(Math.random() * 256).toString(16)
+					color = color.length == 1 ? '0' + color : color
+					rgb.push(color)
+				}
+				return '#' + rgb.join('')
+			}
+		}
+	}
 </script>
 
 <style>
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo {
-  height: 200rpx;
-  width: 200rpx;
-  margin-top: 200rpx;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 50rpx;
-}
-
-.text-area {
-  display: flex;
-  justify-content: center;
-}
-
-.title {
-  font-size: 36rpx;
-  color: #8f8f94;
-}
+	video {
+		width: 690rpx;
+		width: 100%;
+		height: 400px;
+	}
 </style>
