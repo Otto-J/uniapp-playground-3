@@ -16,6 +16,8 @@
     "dev:mp-qq": "uni -p mp-qq",
     "dev:mp-toutiao": "uni -p mp-toutiao",
     "dev:mp-weixin": "uni -p mp-weixin",
+    "dev:mp-weixin-dev": "uni -p mp-weixin --mode dev",
+    "dev:mp-weixin-prod": "uni -p mp-weixin --mode prod",
     "dev:quickapp-webview": "uni -p quickapp-webview",
     "dev:quickapp-webview-huawei": "uni -p quickapp-webview-huawei",
     "dev:quickapp-webview-union": "uni -p quickapp-webview-union",
