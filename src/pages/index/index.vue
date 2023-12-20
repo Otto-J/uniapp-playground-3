@@ -5,6 +5,8 @@
       :longitude="dot.longitude"
       :latitude="dot.latitude"
       show-location
+      :circles="circles"
+      :polyline="polyline"
       :markers="markers"
       @markertap="onMarkertap"
       @labeltap="onLabeltap"
