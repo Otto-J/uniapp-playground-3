@@ -57,11 +57,50 @@ const markers = [
     latitude: dot.latitude,
     width: 60,
     height: 60,
+    title: "标注点名",
+    iconPath: "/static/logo.png",
+    rotate: 0, //45,
+    alpha: 0.5,
+    anchor: {
+      x: 0.5, // 0-1
+      y: 0.5,
+    },
     iconLayout: {
       params: {
         count: "1",
       },
       src: "/static/marker_icon.xml",
+    },
+    /** 有 customCallout 属性自动失效  */
+    callout: {
+      // 这里设置无效
+      content: "文本 11",
+      color: "#ff0000",
+      fontSize: 16,
+      borderRadius: 10,
+      borderWidth: 2,
+      borderColor: "#000000",
+      bgColor: "#ffffff",
+      padding: 5,
+      // display: "BYCLICK",
+      display: "ALWAYS", // BYCLICK
+      textAlign: "center",
+      anchorX: 0,
+      anchorY: 0,
+    },
+
+    label: {
+      content: "label 文本",
+      color: "#ff0000",
+      fontSize: 16,
+      // x,y
+      borderRadius: 10,
+      borderWidth: 2,
+      borderColor: "#000000",
+      bgColor: "#ffffff",
+      padding: 5,
+      textAlign: "center",
+      ["aria-label"]: "标注地名23",
     },
     customCallout: {
       canShowOnTap: true,
@@ -149,36 +188,6 @@ const onCallouttap = (e: Event) => {
 const onControltap = (e: Event) => {
   console.log("onControltap", e);
 };
-const markers2 = [
-  {
-    id: 5,
-    latitude: 30.275052,
-    longitude: 120.140716,
-    width: 60,
-    height: 60,
-    iconLayout: {
-      params: {
-        count: "1",
-      },
-      src: "/layout/marker_icon.xml",
-    },
-    customCallout: {
-      canShowOnTap: true,
-      layout: {
-        params: {
-          title: "标题栏",
-          bgColor: "#FF00FF",
-        },
-        src: "/layout/marker_customcallout.xml",
-      },
-      layoutBubble: {
-        style: "bubble",
-        bgColor: "#898986",
-        borderRadius: 0,
-      },
-    },
-  },
-];
 </script>
 
 <style></style>
