@@ -17,8 +17,12 @@
       @updated="onUpdated"
       @anchorpointtap="onAnchorpointtap"
       @poitap="onPoitap"
-      style="outline: 1px solid red; width: 746rpx; height: calc(100vh - 100rpx)"
+      style="outline: 1px solid red; width: 746rpx; height: calc(100vh - 200rpx)"
     ></map>
+    <!-- go router ali-map/ -->
+    <navigator url="/pages/ali-map/index">
+      <button>ali-map</button>
+    </navigator>
   </div>
 </template>
 <script lang="ts" setup>
@@ -71,6 +75,20 @@ const markers = [
       },
       src: "/static/marker_icon.xml",
     },
+
+    label: {
+      content: "label 文本",
+      color: "#ff0000",
+      fontSize: 16,
+      // x,y
+      borderRadius: 10,
+      borderWidth: 2,
+      borderColor: "#000000",
+      bgColor: "#ffffff",
+      padding: 5,
+      textAlign: "center",
+      ["aria-label"]: "标注地名23",
+    },
     /** 有 customCallout 属性自动失效  */
     callout: {
       // 这里设置无效
@@ -88,21 +106,27 @@ const markers = [
       anchorX: 0,
       anchorY: 0,
     },
-
-    label: {
-      content: "label 文本",
-      color: "#ff0000",
-      fontSize: 16,
-      // x,y
-      borderRadius: 10,
-      borderWidth: 2,
-      borderColor: "#000000",
-      bgColor: "#ffffff",
-      padding: 5,
-      textAlign: "center",
-      ["aria-label"]: "标注地名23",
+    // 普通自定义写法
+    __customCallout: {
+      type: 2,
+      descList: [
+        {
+          desc: "预计",
+          descColor: "#333333",
+        },
+        {
+          desc: "5分钟",
+          descColor: "#108EE9",
+        },
+        {
+          desc: "到达",
+          descColor: "#333333",
+        },
+      ],
+      isShow: 1,
     },
-    customCallout: {
+    // 高级自定义写法
+    _customCallout: {
       canShowOnTap: true,
       layout: {
         params: {
