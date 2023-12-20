@@ -5,9 +5,7 @@
       :longitude="dot.longitude"
       :latitude="dot.latitude"
       show-location
-      :circles="circles"
       :markers="markers"
-      :polyline="polyline"
       @markertap="onMarkertap"
       @labeltap="onLabeltap"
       @callouttap="onCallouttap"
@@ -52,52 +50,32 @@ const circles = [
 // markers 显示标记
 const markers = [
   {
-    id: 11,
+    id: 5,
     longitude: dot.longitude,
     latitude: dot.latitude,
-    title: "标注点名",
-    iconPath: "/static/logo.png",
-    rotate: 0, //45,
-    alpha: 0.5,
-    width: 50,
-    height: 50,
-    anchor: {
-      x: 0.5, // 0-1
-      y: 0.5,
+    width: 60,
+    height: 60,
+    iconLayout: {
+      params: {
+        count: "1",
+      },
+      src: "/static/marker_icon.xml",
     },
-    callout: {
-      content: "文本 11",
-      color: "#ff0000",
-      fontSize: 16,
-      borderRadius: 10,
-      borderWidth: 2,
-      borderColor: "#000000",
-      bgColor: "#ffffff",
-      padding: 5,
-      // display: "BYCLICK",
-      display: "ALWAYS", // BYCLICK
-      textAlign: "center",
-      anchorX: 0,
-      anchorY: 0,
+    customCallout: {
+      canShowOnTap: true,
+      layout: {
+        params: {
+          title: "标题栏",
+          bgColor: "#FF00FF",
+        },
+        src: "/static/marker_customcallout.xml",
+      },
+      layoutBubble: {
+        style: "bubble",
+        bgColor: "#898986",
+        borderRadius: 0,
+      },
     },
-    label: {
-      content: "label 文本",
-      color: "#ff0000",
-      fontSize: 16,
-      // x,y
-      borderRadius: 10,
-      borderWidth: 2,
-      borderColor: "#000000",
-      bgColor: "#ffffff",
-      padding: 5,
-      textAlign: "center",
-      ["aria-label"]: "标注地名23",
-    },
-    // anchor: {},
-    // clusterId:1,
-    // customCallout: {},
-    ["aria-label"]: "标注地名",
-    // joinCluster:true
   },
 ];
 

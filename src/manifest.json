@@ -58,7 +58,8 @@
   },
   "mp-alipay": {
     "usingComponents": true,
-    "include": ["**/*.xml"]
+    "include": ["**/*.xml"],
+    "component2": true
   },
   "mp-baidu": {
     "usingComponents": true
