@@ -1,23 +1,40 @@
 <template>
   <view class="content">
-    <image class="logo" src="/static/logo.png" />
-    <view class="text-area">
-      <text class="title">{{ title }}</text>
-    </view>
-    <uni-card
-      title="基础卡片"
-      sub-title="副标题"
-      extra="额外信息"
-      thumbnail="https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png"
-    >
-      <text>这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。</text>
-    </uni-card>
+    <div @tap="add">
+      current
+      <button>
+        {{ counter.count }}
+      </button>
+    </div>
+    <navigator url="/pages/about/index">
+      <button>go about</button>
+    </navigator>
   </view>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-const title = ref("Hello");
+import { ref, onMounted } from "vue";
+
+onMounted(() => {
+  console.log(2);
+  // #ifdef MP-KUAISHOU
+  console.log("快手小程序");
+  uni.setStorage({
+    key: "test",
+    data: "快手小程序",
+    success: function () {
+      console.log("success");
+    },
+  });
+  // #endif
+});
+import { useCounterStore } from "@/store/counter";
+
+const counter = useCounterStore();
+
+const add = () => {
+  counter.increment();
+};
 </script>
 
 <style>
@@ -47,3 +64,4 @@ const title = ref("Hello");
   color: #8f8f94;
 }
 </style>
+@/store/counter

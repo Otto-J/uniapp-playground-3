@@ -50,6 +50,12 @@ dependencies:
   '@dcloudio/uni-ui':
     specifier: ^1.4.28
     version: 1.4.28
+  pinia:
+    specifier: ~2.0
+    version: 2.0.36(typescript@4.9.5)(vue@3.3.12)
+  pinia-plugin-persist-uni:
+    specifier: ^1.2.0
+    version: 1.2.0(pinia@2.0.36)(vue@3.3.12)
   sass:
     specifier: ^1.69.5
     version: 1.69.5
@@ -5608,6 +5614,39 @@ packages:
     resolution: {integrity: sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==}
     engines: {node: '>=0.10.0'}
 
+  /pinia-plugin-persist-uni@1.2.0(pinia@2.0.36)(vue@3.3.12):
+    resolution: {integrity: sha512-9ZLdeB+nfeu0WD7WEv19E1u2cWbnK/J8fDR5w56JPGoQtbU4Uy8VLKSvfHlbuVzGxBaE1DhG4/ulWVm3oAArpg==}
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0
+      pinia: ^2.0.0
+      vue: ^2.0.0 || >=3.0.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      pinia: 2.0.36(typescript@4.9.5)(vue@3.3.12)
+      vue: 3.3.12(typescript@4.9.5)
+      vue-demi: 0.12.5(vue@3.3.12)
+    dev: false
+
+  /pinia@2.0.36(typescript@4.9.5)(vue@3.3.12):
+    resolution: {integrity: sha512-4UKApwjlmJH+VuHKgA+zQMddcCb3ezYnyewQ9NVrsDqZ/j9dMv5+rh+1r48whKNdpFkZAWVxhBp5ewYaYX9JcQ==}
+    peerDependencies:
+      '@vue/composition-api': ^1.4.0
+      typescript: '>=4.4.4'
+      vue: ^2.6.14 || ^3.2.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      '@vue/devtools-api': 6.5.1
+      typescript: 4.9.5
+      vue: 3.3.12(typescript@4.9.5)
+      vue-demi: 0.14.6(vue@3.3.12)
+    dev: false
+
   /pirates@4.0.6:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}
     engines: {node: '>= 6'}
@@ -6460,6 +6499,36 @@ packages:
       terser: 5.26.0
     optionalDependencies:
       fsevents: 2.3.3
+
+  /vue-demi@0.12.5(vue@3.3.12):
+    resolution: {integrity: sha512-BREuTgTYlUr0zw0EZn3hnhC3I6gPWv+Kwh4MCih6QcAeaTlaIX0DwOVN0wHej7hSvDPecz4jygy/idsgKfW58Q==}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      vue: 3.3.12(typescript@4.9.5)
+    dev: false
+
+  /vue-demi@0.14.6(vue@3.3.12):
+    resolution: {integrity: sha512-8QA7wrYSHKaYgUxDA5ZC24w+eHm3sYCbp0EzcDwKqN3p6HqtTCGR/GVsPyZW92unff4UlcSh++lmqDWN3ZIq4w==}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      vue: 3.3.12(typescript@4.9.5)
+    dev: false
 
   /vue-i18n@9.8.0(vue@3.3.12):
     resolution: {integrity: sha512-Izho+6PYjejsTq2mzjcRdBZ5VLRQoSuuexvR8029h5CpN03FYqiqBrShMyf2I1DKkN6kw/xmujcbvC+4QybpsQ==}

@@ -6,6 +6,12 @@
       "style": {
         "navigationBarTitleText": "uni-app"
       }
+    },
+    {
+      "path": "pages/about/index",
+      "style": {
+        "navigationBarTitleText": "about"
+      }
     }
   ],
   "easycom": {
