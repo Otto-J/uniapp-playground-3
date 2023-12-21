@@ -23,13 +23,19 @@
 declare global {
   interface Window {
     Quill: any;
+    ImageResize: any;
   }
 }
 
 // h5 依赖 quill 依赖，这里引入依赖，挂在全局避免去远程引入
 // #ifdef H5
-import quill from "quill";
-window.Quill = quill;
+import ImageResize from "quill-image-resize-mp";
+import Quill from "quill";
+
+console.log(ImageResize);
+
+window.Quill = Quill;
+window.ImageResize = { default: ImageResize };
 // #endif
 
 function onStatusChange(e: any) {

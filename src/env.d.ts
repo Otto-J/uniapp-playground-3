@@ -8,3 +8,4 @@ declare module "*.vue" {
 }
 declare module "quill";
 // 拓展 window.Quill 为 any
+declare module "quill-image-resize-mp";
