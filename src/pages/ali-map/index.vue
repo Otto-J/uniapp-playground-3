@@ -98,6 +98,20 @@ const polyline = ref<any[]>([]);
 onReady(() => {
   // 使用 uni.createMapContext 获取 map 上下文
   mapCtx = uni.createMapContext("map") as MapCtx;
+
+  uni.getLocation({
+    type: "gcj02",
+    success: (res) => {
+      console.log("getLocale", res);
+      longitude.value = res.longitude;
+      latitude.value = res.latitude;
+    },
+    fail: (error) => {
+      uni.showModal({
+        content: JSON.stringify(error),
+      });
+    },
+  });
 });
 
 function demoResetMap() {
