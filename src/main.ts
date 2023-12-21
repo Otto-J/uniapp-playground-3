@@ -2,7 +2,8 @@ import { createSSRApp } from "vue";
 import App from "./App.vue";
 import { createPinia } from "pinia";
 // import piniaPersist from "./presist-ui";
-import piniaPersist from "pinia-plugin-persist-uni";
+// import piniaPersist from "pinia-plugin-persist-uni";
+import piniaPersist from "./pinia-persist-uni.es";
 
 const pinia = createPinia();
 pinia.use(piniaPersist);
