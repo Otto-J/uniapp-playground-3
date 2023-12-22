@@ -21,6 +21,18 @@
 <script setup lang="ts">
 import { ref } from "vue";
 const title = ref("Hello");
+
+// 请求之前，请执行 `npx http-server`
+// 请求 http://127.0.0.1:8080/api/get-json.json 确认有返回值
+uni.request({
+  url: "/api/get-json.json",
+  success: (res) => {
+    console.log("json=== " + res.data);
+  },
+  fail: (err) => {
+    console.log("err,json=== " + err);
+  },
+});
 </script>
 
 <style>
