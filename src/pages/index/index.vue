@@ -14,20 +14,21 @@ import { onLoad, onUnload } from "@dcloudio/uni-app";
 const go = () => {
   uni.navigateTo({
     url: "/pages/about/index?msg=hello",
+    events: {
+      // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+      page1: function (data) {
+        console.log(444, data);
+      },
+    },
+    success: function (res) {
+      // 通过eventChannel向被打开页面传送数据
+      res.eventChannel.emit("page2", { data: "page1 发来的信息" });
+    },
   });
 };
 
-onLoad(() => {
-  // 思路是先发注册监听、再发送信息。此时 page2
-  // 跳转后之后才会激活页面，才会收到 on 事件
-  uni.$on("page2Ready", function (data) {
-    console.log("page1 收到 page2 发过来的信息", data);
-    uni.$emit("update", { msg: "页面更新" });
-  });
-});
-
 onUnload(() => {
-  uni.$off("page2Ready");
+  // uni.$off("page2Ready");
 });
 </script>
 
