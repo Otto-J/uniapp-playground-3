@@ -8,7 +8,7 @@ import { onLoad, onUnload } from "@dcloudio/uni-app";
 
 onLoad(() => {
   uni.$on("update", function (data) {
-    console.log("监听到事件来自 update ，携带参数 msg 为：" + data.msg);
+    console.log("page2 监听到事件来自 update ，携带参数 msg 为：" + data.msg);
   });
   uni.$emit("page2Ready", { msg: "page2 准备好了，你发送吧" });
 });

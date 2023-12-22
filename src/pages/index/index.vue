@@ -18,10 +18,10 @@ const go = () => {
 };
 
 onLoad(() => {
-  // 思路是先发注册监听、再发送信息
-
+  // 思路是先发注册监听、再发送信息。此时 page2
+  // 跳转后之后才会激活页面，才会收到 on 事件
   uni.$on("page2Ready", function (data) {
-    console.log("收到 page2 发过来的信息了", data);
+    console.log("page1 收到 page2 发过来的信息", data);
     uni.$emit("update", { msg: "页面更新" });
   });
 });
