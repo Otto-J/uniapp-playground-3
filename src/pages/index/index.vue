@@ -17,7 +17,7 @@
       @updated="onUpdated"
       @anchorpointtap="onAnchorpointtap"
       @poitap="onPoitap"
-      style="outline: 1px solid red; width: 746rpx; height: calc(100vh - 100rpx)"
+      style="outline: 1px solid red; width: 746rpx; height: 50vh"
     ></map>
   </div>
 </template>
