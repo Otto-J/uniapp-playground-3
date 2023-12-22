@@ -1,4 +1,5 @@
-const isH5 = uni.getSystemInfoSync().uniPlatform.toLocaleLowerCase() === "web";
+var _a, _b;
+const isH5 = typeof uni !== "undefined" ? ["web", "h5", void 0].includes((_b = (_a = uni == null ? void 0 : uni.getSystemInfoSync()) == null ? void 0 : _a.uniPlatform) == null ? void 0 : _b.toLocaleLowerCase()) : true;
 const updateStorage = (strategy, store, options) => {
   const storage = strategy.storage;
   const storeKey = strategy.key || store.$id;
@@ -20,21 +21,21 @@ const updateStorage = (strategy, store, options) => {
   }
 };
 var index = ({ options, store }) => {
-  var _a, _b, _c, _d, _e, _f;
-  if ((_a = options.persist) == null ? void 0 : _a.enabled) {
+  var _a2, _b2, _c, _d, _e, _f;
+  if ((_a2 = options.persist) == null ? void 0 : _a2.enabled) {
     const defaultStrat = [
       {
         key: store.$id,
-        storage: ((_b = options.persist) == null ? void 0 : _b.H5Storage) || (window == null ? void 0 : window.sessionStorage)
+        storage: ((_b2 = options.persist) == null ? void 0 : _b2.H5Storage) || (window == null ? void 0 : window.sessionStorage)
       }
     ];
     const strategies = ((_d = (_c = options.persist) == null ? void 0 : _c.strategies) == null ? void 0 : _d.length) ? (_e = options.persist) == null ? void 0 : _e.strategies : defaultStrat;
     strategies.forEach((strategy) => {
-      var _a2, _b2;
-      const storage = strategy.storage || ((_a2 = options.persist) == null ? void 0 : _a2.H5Storage) || (window == null ? void 0 : window.sessionStorage);
+      var _a3, _b3;
+      const storage = strategy.storage || ((_a3 = options.persist) == null ? void 0 : _a3.H5Storage) || (window == null ? void 0 : window.sessionStorage);
       const storeKey = strategy.key || store.$id;
       let storageResult;
-      if (isH5 || ((_b2 = options.persist) == null ? void 0 : _b2.enforceCustomStorage)) {
+      if (isH5 || ((_b3 = options.persist) == null ? void 0 : _b3.enforceCustomStorage)) {
         storageResult = storage.getItem(storeKey);
       } else {
         storageResult = uni.getStorageSync(storeKey);
