@@ -9,5 +9,9 @@ onShow(() => {
 onHide(() => {
   console.log("App Hide");
 });
+
+// uni.$on("update", function (data) {
+//   console.log("监听到事件来自 update ，携带参数 msg 为：" + data.msg);
+// });
 </script>
 <style></style>
