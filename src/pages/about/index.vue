@@ -1,5 +1,8 @@
 <template>
-  <div>about page</div>
+  <div class="">
+    <div>hi</div>
+    <image src="/static/icon.svg" mode="scaleToFill" />
+  </div>
 </template>
 <script lang="ts" setup></script>
 
