@@ -12,15 +12,49 @@
     >
       <text>这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。</text>
     </uni-card>
-    <navigator url="/pages/about/index">
-      <button>go about page</button>
-    </navigator>
+    <button @click="uploadImage">上传文件</button>
   </view>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 const title = ref("Hello");
+
+const uploadImage = () => {
+  uni.chooseVideo({
+    sourceType: ["camera", "album"],
+    success: (chooseImageRes) => {
+      const tempFilePaths = chooseImageRes.tempFilePath;
+      // debugger;
+      uni.uploadFile({
+        url: "http://192.168.31.60:3000/upload", //仅为示例，非真实的接口地址
+        filePath: tempFilePaths,
+        name: "file",
+        // only for alipay
+        hideLoading: true,
+
+        success: (uploadFileRes) => {
+          console.log(uploadFileRes.data);
+          // alert ok
+          uni.showToast({
+            title: "上传成功",
+            icon: "success",
+            duration: 2000,
+          });
+        },
+        fail: (err) => {
+          console.log(err);
+          // alert fail
+          uni.showToast({
+            title: "上传失败",
+            icon: "none",
+            duration: 2000,
+          });
+        },
+      });
+    },
+  });
+};
 </script>
 
 <style>
