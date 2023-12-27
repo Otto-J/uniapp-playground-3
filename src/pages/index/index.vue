@@ -1,52 +1,36 @@
 <template>
-  <view class="content">
-    <image class="logo" src="/static/logo.png" />
-    <view class="text-area">
-      <text class="title">{{ title }}</text>
-    </view>
-    <uni-card
-      title="基础卡片"
-      sub-title="副标题"
-      extra="额外信息"
-      thumbnail="https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png"
-    >
-      <text>这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。</text>
-    </uni-card>
-    <navigator url="/pages/about/index">
-      <button>go about page</button>
-    </navigator>
-  </view>
+  <div>
+    <xr-start
+      disable-scroll
+      id="main-frame"
+      :width="renderWidth"
+      :height="renderHeight"
+      :style="`width:${width}px;height:${height}px`"
+    />
+  </div>
 </template>
-
-<script setup lang="ts">
+<script lang="ts" setup>
+import { onLoad } from "@dcloudio/uni-app";
 import { ref } from "vue";
-const title = ref("Hello");
+
+const width = ref(300);
+const height = ref(300);
+const renderWidth = ref(300);
+const renderHeight = ref(300);
+onLoad(() => {
+  // #ifdef MP-WEIXIN
+  const info = wx.getSystemInfoSync();
+  // debugger;
+  const _width = info.windowWidth;
+  const _height = info.windowHeight;
+  const _dpi = info.pixelRatio;
+
+  width.value = _width;
+  height.value = _height;
+  renderWidth.value = _width * _dpi;
+  renderHeight.value = _height * _dpi;
+  // #endif
+});
 </script>
 
-<style>
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo {
-  height: 200rpx;
-  width: 200rpx;
-  margin-top: 200rpx;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 50rpx;
-}
-
-.text-area {
-  display: flex;
-  justify-content: center;
-}
-
-.title {
-  font-size: 36rpx;
-  color: #8f8f94;
-}
-</style>
+<style></style>

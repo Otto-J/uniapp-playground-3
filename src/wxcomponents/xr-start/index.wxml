@@ -1,0 +1,41 @@
+<xr-scene>
+  <xr-assets bind:progress="handleAssetsProgress" bind:loaded="handleAssetsLoaded">
+    <xr-asset-load
+      type="texture"
+      asset-id="waifu"
+      src="https://mmbizwxaminiprogram-1258344707.cos.ap-guangzhou.myqcloud.com/xr-frame/demo/waifu.png"
+    />
+    <xr-asset-load
+      type="video-texture"
+      asset-id="office"
+      src="https://mmbizwxaminiprogram-1258344707.cos.ap-guangzhou.myqcloud.com/xr-frame/demo/videos/office-skybox.mp4"
+      options="autoPlay:true,loop:true"
+    />
+  </xr-assets>
+  <xr-env env-data="xr-frame-team-workspace-day" sky-map="video-office" />
+
+  <xr-light type="ambient" color="1 1 1" intensity="1" />
+  <xr-light type="directional" rotation="40 70 0" color="1 1 1" intensity="3" cast-shadow />
+
+  <xr-mesh
+    node-id="cube"
+    cast-shadow
+    geometry="cube"
+    uniforms="u_baseColorMap: waifu,u_metallicRoughnessValues:1 0.1"
+  />
+
+  <xr-mesh
+    position="0 -1 0"
+    scale="4 1 4"
+    receive-shadow
+    geometry="plane"
+    uniforms="u_baseColorMap: {{ avatarTextureId }}"
+  />
+  <xr-camera
+    position="0 1 4"
+    target="cube"
+    background="skybox"
+    clear-color="0.4 0.8 0.6 1"
+    camera-orbit-control
+  />
+</xr-scene>
