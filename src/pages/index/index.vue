@@ -1,86 +1,72 @@
 <template>
-  <view class="content">
-    <image class="logo" src="/static/logo.png" />
-    <view class="text-area">
-      <text class="title">{{ title }}</text>
-    </view>
-    <uni-card
-      title="基础卡片"
-      sub-title="副标题"
-      extra="额外信息"
-      thumbnail="https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png"
-    >
-      <text>这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。</text>
-    </uni-card>
-    <button @click="uploadImage">上传文件</button>
-  </view>
+  <div>
+    <div>微信旧版 canvas</div>
+    <div style="outline: 1px solid red">
+      <canvas canvas-id="myCanvas" style="height: 150px" />
+    </div>
+
+    <div>微信新版 canvas</div>
+    <div style="outline: 1px solid green">
+      <canvas id="myCanvas2" type="2d" style="height: 150px" />
+    </div>
+  </div>
 </template>
+<script lang="ts" setup>
+import { onLoad } from "@dcloudio/uni-app";
 
-<script setup lang="ts">
-import { ref } from "vue";
-const title = ref("Hello");
+/** 旧版 canvas */
+{
+  const old_context = uni.createCanvasContext("myCanvas");
+  // 若干绘制调用
+  // 绘制红色正方形
+  old_context.fillStyle = "rgb(200, 0, 0)";
+  old_context.fillRect(10, 10, 50, 50);
 
-const uploadImage = () => {
-  uni.chooseVideo({
-    sourceType: ["camera", "album"],
-    success: (chooseImageRes) => {
-      const tempFilePaths = chooseImageRes.tempFilePath;
-      // debugger;
-      uni.uploadFile({
-        url: "http://192.168.31.60:3000/upload", //仅为示例，非真实的接口地址
-        filePath: tempFilePaths,
-        name: "file",
-        // only for alipay
-        hideLoading: true,
-
-        success: (uploadFileRes) => {
-          console.log(uploadFileRes.data);
-          // alert ok
-          uni.showToast({
-            title: "上传成功",
-            icon: "success",
-            duration: 2000,
-          });
-        },
-        fail: (err) => {
-          console.log(err);
-          // alert fail
-          uni.showToast({
-            title: "上传失败",
-            icon: "none",
-            duration: 2000,
-          });
-        },
-      });
-    },
+  // 绘制蓝色半透明正方形
+  old_context.fillStyle = "rgba(0, 0, 200, 0.5)";
+  old_context.fillRect(30, 30, 50, 50);
+  old_context.draw(false, () => {
+    // 这里绘制完成
+    console.log("draw done");
   });
-};
+}
+/** 新版 canvas */
+{
+  onLoad(() => {
+    let new_ctx: any;
+    uni
+      .createSelectorQuery()
+      .select("#myCanvas2") // 在 WXML 中填入的 id
+      .fields({ node: true, size: true })
+      .exec((res) => {
+        // Canvas 对象
+        const canvas = res[0].node;
+        // 渲染上下文
+        const ctx = canvas.getContext("2d");
+
+        // Canvas 画布的实际绘制宽高
+        const width = res[0].width;
+        const height = res[0].height;
+
+        // 初始化画布大小
+        const dpr = uni.getWindowInfo().pixelRatio;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.scale(dpr, dpr);
+
+        // 清空画布
+        ctx.clearRect(0, 0, width, height);
+
+        // 绘制红色正方形
+        ctx.fillStyle = "rgb(200, 0, 0)";
+        ctx.fillRect(10, 10, 50, 50);
+
+        // 绘制蓝色半透明正方形
+        ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+        ctx.fillRect(30, 30, 50, 50);
+      });
+  });
+}
 </script>
 
-<style>
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo {
-  height: 200rpx;
-  width: 200rpx;
-  margin-top: 200rpx;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 50rpx;
-}
-
-.text-area {
-  display: flex;
-  justify-content: center;
-}
-
-.title {
-  font-size: 36rpx;
-  color: #8f8f94;
-}
-</style>
+<style></style>
