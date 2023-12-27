@@ -2,12 +2,12 @@
   <div>
     <div>微信旧版 canvas</div>
     <div style="outline: 1px solid red">
-      <canvas canvas-id="myCanvas" style="height: 150px" />
+      <canvas id="myCanvas" canvas-id="myCanvas" style="height: 150px" />
     </div>
 
     <div>微信新版 canvas</div>
     <div style="outline: 1px solid green">
-      <canvas id="myCanvas2" type="2d" style="height: 150px" />
+      <canvas id="myCanvas2" canvas-id="myCanvas2" type="2d" style="height: 150px" />
     </div>
   </div>
 </template>
