@@ -12,15 +12,34 @@
     >
       <text>这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。</text>
     </uni-card>
-    <navigator url="/pages/about/index">
-      <button>go about page</button>
-    </navigator>
+    <!-- <navigator url="/pages/about/index"> -->
+    <button open-type="share">go share</button>
+    <!-- </navigator> -->
   </view>
 </template>
 
 <script setup lang="ts">
+import { onLoad, onShareAppMessage } from "@dcloudio/uni-app";
 import { ref } from "vue";
 const title = ref("Hello");
+
+onShareAppMessage((option) => {
+  console.log("share", option);
+  return {
+    title: "Hello",
+    path: "/pages/index/index?c=4&d=5",
+    imageUrl: "/static/logo.png",
+    desc: "desc1",
+    // query: "a=1&b=2",
+  };
+});
+
+onLoad((query) => {
+  if (query) {
+    // do something...
+    console.log("query", query);
+  }
+});
 </script>
 
 <style>
