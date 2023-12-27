@@ -1,52 +1,31 @@
 <template>
-  <view class="content">
-    <image class="logo" src="/static/logo.png" />
-    <view class="text-area">
-      <text class="title">{{ title }}</text>
-    </view>
-    <uni-card
-      title="基础卡片"
-      sub-title="副标题"
-      extra="额外信息"
-      thumbnail="https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png"
-    >
-      <text>这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。</text>
-    </uni-card>
-    <navigator url="/pages/about/index">
-      <button>go about page</button>
-    </navigator>
+  <!-- prettier-ignore -->
+
+  <view class="
+              flex 
+              justify-center 
+              items-center 
+              w-full 
+              h-screen
+              ">
+    <view class="
+      text-white 
+        underline 
+        rounded-sm 
+        bg-blue-300 
+        px-4 
+        py-2
+        ">demo</view>
   </view>
 </template>
-
-<script setup lang="ts">
-import { ref } from "vue";
-const title = ref("Hello");
-</script>
+<script lang="ts" setup></script>
 
 <style>
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.box {
+  /* display: flex;
+  width: 100vw;
+  height: 100vh;
   justify-content: center;
-}
-
-.logo {
-  height: 200rpx;
-  width: 200rpx;
-  margin-top: 200rpx;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 50rpx;
-}
-
-.text-area {
-  display: flex;
-  justify-content: center;
-}
-
-.title {
-  font-size: 36rpx;
-  color: #8f8f94;
+  align-items: center; */
 }
 </style>
