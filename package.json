@@ -37,7 +37,7 @@
     "build:quickapp-webview-huawei": "uni build -p quickapp-webview-huawei",
     "build:quickapp-webview-union": "uni build -p quickapp-webview-union",
     "type-check": "vue-tsc --noEmit",
-    "push": "git push && git push github",
+    "push": "git push origin --all && git push github --all",
     "open": "weapp open -p dist/dev/mp-weixin"
   },
   "dependencies": {
