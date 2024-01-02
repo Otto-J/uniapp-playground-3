@@ -37,7 +37,8 @@
     "build:quickapp-webview-huawei": "uni build -p quickapp-webview-huawei",
     "build:quickapp-webview-union": "uni build -p quickapp-webview-union",
     "type-check": "vue-tsc --noEmit",
-    "push": "git push && git push github"
+    "push": "git push && git push github",
+    "api": "nitro dev"
   },
   "dependencies": {
     "@dcloudio/uni-app": "3.0.0-alpha-4000020231218001",
@@ -55,6 +56,7 @@
     "@dcloudio/uni-mp-xhs": "3.0.0-alpha-4000020231218001",
     "@dcloudio/uni-quickapp-webview": "3.0.0-alpha-4000020231218001",
     "@dcloudio/uni-ui": "^1.4.28",
+    "h3": "^1.9.0",
     "sass": "^1.69.5",
     "vue": "^3.3.12",
     "vue-i18n": "^9.8.0"

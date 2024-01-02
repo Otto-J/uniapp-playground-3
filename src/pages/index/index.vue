@@ -27,7 +27,7 @@ const uploadImage = () => {
       const tempFilePaths = chooseImageRes.tempFilePath;
       // debugger;
       uni.uploadFile({
-        url: "http://192.168.31.60:3000/upload", //仅为示例，非真实的接口地址
+        url: "http://localhost:3000/upload", //仅为示例，非真实的接口地址
         filePath: tempFilePaths,
         name: "file",
         // only for alipay
