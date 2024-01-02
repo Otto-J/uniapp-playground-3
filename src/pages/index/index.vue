@@ -33,7 +33,6 @@ import { onLoad } from "@dcloudio/uni-app";
 /** 新版 canvas */
 {
   onLoad(() => {
-    let new_ctx: any;
     uni
       .createSelectorQuery()
       .select("#myCanvas2") // 在 WXML 中填入的 id
@@ -41,6 +40,15 @@ import { onLoad } from "@dcloudio/uni-app";
       .exec((res) => {
         // Canvas 对象
         const canvas = res[0].node;
+
+        // 这里可以执行 canvas 提供的方法
+        // https://developers.weixin.qq.com/miniprogram/dev/api/canvas/Canvas.requestAnimationFrame.html
+        console.log(
+          4,
+          canvas.requestAnimationFrame,
+          typeof canvas.requestAnimationFrame === "function"
+        );
+
         // 渲染上下文
         const ctx = canvas.getContext("2d");
 
