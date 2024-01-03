@@ -9,6 +9,7 @@
     "dev:h5": "uni",
     "dev:h5:ssr": "uni --ssr",
     "dev:mp-alipay": "uni -p mp-alipay",
+    "dev:mp-alipay2": "uni -p mp-alipay2",
     "dev:mp-dingtalk": "uni -p mp-dingtalk",
     "dev:mp-baidu": "uni -p mp-baidu",
     "dev:mp-jd": "uni -p mp-jd",
@@ -74,6 +75,14 @@
   },
   "uni-app": {
     "scripts": {
+      "mp-alipay2": {
+        "env": {
+          "UNI_PLATFORM": "mp-alipay",
+          "ENV_TYPE": "22 支付宝小程序",
+          "UNI_DEMO_TITLE": "支付宝 demo"
+        },
+        "define": {}
+      },
       "mp-dingtalk": {
         "title": "钉钉小程序",
         "_desc": "定义 dingtalk 平台，基于 alipay，范围上 alipay > dingtalk",

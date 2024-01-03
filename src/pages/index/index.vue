@@ -12,12 +12,16 @@
     <!-- #endif -->
 
     <!-- #endif -->
+    <!-- #ifdef MP-WEIXIN -->
+    <div>只有微信可以看见</div>
+    <!-- #endif -->
   </div>
 </template>
 <script lang="ts" setup>
-// console.log(process.env.UNI_PLATFORM);
-// console.log(process.env.UNI_DEMO_TITLE);
-console.log(import.meta.env);
+console.log(process.env.UNI_PLATFORM);
+console.log(process.env.UNI_DEMO_TITLE);
+console.log(process.env.ENV_TYPE);
+
 const elementTap = () => {
   console.log("elementTap");
 };
