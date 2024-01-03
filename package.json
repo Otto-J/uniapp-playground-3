@@ -78,10 +78,13 @@
         "title": "钉钉小程序",
         "_desc": "定义 dingtalk 平台，基于 alipay，范围上 alipay > dingtalk",
         "env": {
-          "UNI_PLATFORM": "mp-alipay"
+          "UNI_PLATFORM": "mp-alipay",
+          "ENV_TYPE": "钉钉小程序",
+          "UNI_DEMO_TITLE": "uni-app dingtalk demo"
         },
         "define": {
-          "MP-DINGTALK": true
+          "MP-DINGTALK": true,
+          "ENV_TYPE": "支付宝小程序"
         }
       }
     }
