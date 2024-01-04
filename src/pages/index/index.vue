@@ -2,7 +2,9 @@
   <view class="content">
     <image class="logo" src="/static/logo.png" />
     <view class="text-area">
-      <text class="title">{{ title }}</text>
+      <!-- <p>{{ $t("message.hello") }}</p> -->
+      <p>{{ t("message.hello") }}</p>
+      <!-- <text class="title">{{ title }}</text> -->
     </view>
     <uni-card
       title="基础卡片"
@@ -12,13 +14,27 @@
     >
       <text>这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。</text>
     </uni-card>
-    <button @click="uploadImage">上传文件</button>
+    <button @click="changeLanguage">切换语言</button>
   </view>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 const title = ref("Hello");
+import { useI18n } from "vue-i18n";
+
+const locale2 = uni.getLocale();
+console.log(1, locale2);
+
+const { t, locale } = useI18n();
+
+const changeLanguage = () => {
+  // en - zh-Hans - ja 循环切换
+  const locales = ["en", "zh-Hans", "ja"];
+  const index = locales.findIndex((item) => item === locale.value);
+  const nextIndex = (index + 1) % locales.length;
+  locale.value = locales[nextIndex];
+};
 
 const uploadImage = () => {
   uni.chooseVideo({
