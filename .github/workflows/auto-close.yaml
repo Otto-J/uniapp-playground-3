@@ -20,6 +20,7 @@ jobs:
             const labelName = '7daysAutoClose'; // 替换为你的标签名称
             const issue = context.payload.issue;
             const labels = issue.labels.map(label => label.name);
+            console.log(labels);
             const hasLabel = labels.includes(labelName);
             return { hasLabel };
 
