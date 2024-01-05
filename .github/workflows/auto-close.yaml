@@ -22,6 +22,7 @@ jobs:
             const labels = issue.labels.map(label => label.name);
             console.log(labels);
             const hasLabel = labels.includes(labelName);
+            console.log(3,hasLabel);
             return { hasLabel };
 
       - name: Add auto-reply comment
