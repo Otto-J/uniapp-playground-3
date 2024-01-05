@@ -1,60 +1,44 @@
 <template>
   <view class="content">
-    <image class="logo" src="/static/logo.png" />
-    <view class="text-area">
-      <text class="title">{{ title }}</text>
-    </view>
     <uni-card
       title="基础卡片"
       sub-title="副标题"
       extra="额外信息"
       thumbnail="https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png"
     >
-      <text>这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。</text>
+      <test1 ref="comp"></test1>
+      <div class="abc" style="outline: 1px solid red">hi</div>
     </uni-card>
-    <button @click="uploadImage">上传文件</button>
+    <button @click="queryChild">上传文件</button>
   </view>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
+import test1 from "./test1.vue";
+import { onMounted } from "vue";
+const comp = ref();
 const title = ref("Hello");
-
-const uploadImage = () => {
-  uni.chooseVideo({
-    sourceType: ["camera", "album"],
-    success: (chooseImageRes) => {
-      const tempFilePaths = chooseImageRes.tempFilePath;
-      // debugger;
-      uni.uploadFile({
-        url: "http://192.168.31.60:3000/upload", //仅为示例，非真实的接口地址
-        filePath: tempFilePaths,
-        name: "file",
-        // only for alipay
-        hideLoading: true,
-
-        success: (uploadFileRes) => {
-          console.log(uploadFileRes.data);
-          // alert ok
-          uni.showToast({
-            title: "上传成功",
-            icon: "success",
-            duration: 2000,
-          });
-        },
-        fail: (err) => {
-          console.log(err);
-          // alert fail
-          uni.showToast({
-            title: "上传失败",
-            icon: "none",
-            duration: 2000,
-          });
-        },
-      });
-    },
-  });
+const queryChild = () => {
+  const query = uni.createSelectorQuery().in();
+  // const query = uni.createSelectorQuery().in(comp.value);
+  query
+    .select(".test1 >>> .test1-1")
+    .boundingClientRect((data) => {
+      if (Array.isArray(data)) {
+        console.log("得到布局位置信息" + JSON.stringify(data[0]));
+        console.log("节点离页面顶部的距离为" + data[0]?.top);
+      } else {
+        console.log("得到布局位置信息" + JSON.stringify(data));
+        console.log("节点离页面顶部的距离为" + data.top);
+      }
+    })
+    .exec();
 };
+
+onMounted(() => {
+  queryChild();
+});
 </script>
 
 <style>
