@@ -1,0 +1,50 @@
+name: Auto Close Issues
+
+on:
+  # 手动执行
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *" # 每天 UTC 时间 00:00 执行
+
+jobs:
+  auto-close:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check and close issues
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const labelName = '7daysAutoClose'; // 替换为你的标签名称
+            const repo = context.repo.repo;
+            const owner = context.repo.owner;
+            const query = `is:issue is:open label:${labelName}`;
+            const { data: issues } = await github.search.issuesAndPullRequests({
+              q: query,
+              per_page: 100
+            });
+            for (const issue of issues.items) {
+              const issueNumber = issue.number;
+              const { data: comments } = await github.issues.listComments({
+                owner,
+                repo,
+                issue_number: issueNumber,
+                per_page: 1
+              });
+              if (comments.length > 0) {
+                const lastCommentDate = new Date(comments[0].created_at);
+                const currentDate = new Date();
+                const timeDiff = Math.abs(currentDate - lastCommentDate);
+                # const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+                if (timeDiff >= (3*60*1000)) {
+                  await github.issues.update({
+                    owner,
+                    repo,
+                    issue_number: issueNumber,
+                    state: 'closed'
+                  });
+                  console.log(`Closed issue: ${issue.html_url}`);
+                }
+              }
+            }

@@ -1,0 +1,68 @@
+name: Auto Reply, Close, and Delete Label
+
+on:
+  workflow_dispatch:
+  issues:
+    types:
+      - labeled
+
+jobs:
+  auto-reply-close-delete-label:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check if label is added
+        id: check_label
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const labelName = '7daysAutoClose'; // 替换为你的标签名称
+            const issue = context.payload.issue;
+            const labels = issue.labels.map(label => label.name);
+            const hasLabel = labels.includes(labelName);
+            return { hasLabel };
+
+      - name: Add auto-reply comment
+        if: steps.check_label.outputs.hasLabel
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const commentBody = '如果还有其他问题，请继续回复。本 issue 会在七天后自动关闭。';
+            const issueNumber = context.payload.issue.number;
+            const repo = context.repo.repo;
+            const owner = context.repo.owner;
+            const comment = await github.issues.createComment({
+              owner,
+              repo,
+              issue_number: issueNumber,
+              body: commentBody
+            });
+            return { comment };
+
+      # - name: Close issue and delete label after a week
+      #   if: steps.check_label.outputs.hasLabel
+      #   uses: actions/github-script@v4
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     script: |
+      #       const issueNumber = context.payload.issue.number;
+      #       const repo = context.repo.repo;
+      #       const owner = context.repo.owner;
+      #       # const closeDate = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+      #       # mock 3 minutes
+      #       const closeDate = new Date(Date.now() + 3 * 60 * 1000).toISOString();
+      #       await github.issues.update({
+      #         owner,
+      #         repo,
+      #         issue_number: issueNumber,
+      #         state: 'closed',
+      #         closed_at: closeDate
+      #       });
+      #       await github.issues.removeLabel({
+      #         owner,
+      #         repo,
+      #         issue_number: issueNumber,
+      #         name: labelName
+      #       });
