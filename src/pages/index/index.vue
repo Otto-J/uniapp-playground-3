@@ -2,15 +2,20 @@
   <view class="content">
     <div>不点击动态设置 tabBar path，页面会跳到 about111 ，点击之后会跳转到 about222</div>
     <button @click="setTabBarPath">动态设置 tabBar path</button>
-    <button @click="go2about">跳转页面</button>
-    <button @click="go2about2">跳转页面2</button>
+    <button @click="go2about">switch tab跳转页面</button>
+    <button @click="go2about2">navigator to 跳转页面2</button>
   </view>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 const title = ref("Hello");
+import { onLoad } from "@dcloudio/uni-app";
 
+onLoad((option) => {
+  //option为object类型，会序列化上个页面传递的参数
+  console.log(2, option); //打印出上个页面传递的参数。
+});
 // 这个 demo 只能在 h5 下生效，小程序不支持。
 const setTabBarPath = () => {
   // https://uniapp.dcloud.net.cn/api/ui/tabbar.html#settabbaritem
@@ -27,7 +32,7 @@ const go2about = () => {
 };
 
 const go2about2 = () => {
-  uni.navigateTo({ url: "/pages/about2/index" });
+  uni.navigateTo({ url: "/pages/about2/index?type=aa" });
 };
 </script>
 
