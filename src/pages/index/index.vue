@@ -1,18 +1,9 @@
 <template>
   <view class="content">
-    <image class="logo" src="/static/logo.png" />
-    <view class="text-area">
-      <text class="title">{{ title }}</text>
-    </view>
-    <uni-card
-      title="基础卡片"
-      sub-title="副标题"
-      extra="额外信息"
-      thumbnail="https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png"
-    >
-      <text>这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。</text>
-    </uni-card>
-    <button @click="uploadImage">上传文件</button>
+    <div>不点击动态设置 tabBar path，页面会跳到 about111 ，点击之后会跳转到 about222</div>
+    <button @click="setTabBarPath">动态设置 tabBar path</button>
+    <button @click="go2about">跳转页面</button>
+    <button @click="go2about2">跳转页面2</button>
   </view>
 </template>
 
@@ -20,40 +11,23 @@
 import { ref } from "vue";
 const title = ref("Hello");
 
-const uploadImage = () => {
-  uni.chooseVideo({
-    sourceType: ["camera", "album"],
-    success: (chooseImageRes) => {
-      const tempFilePaths = chooseImageRes.tempFilePath;
-      // debugger;
-      uni.uploadFile({
-        url: "http://192.168.31.60:3000/upload", //仅为示例，非真实的接口地址
-        filePath: tempFilePaths,
-        name: "file",
-        // only for alipay
-        hideLoading: true,
-
-        success: (uploadFileRes) => {
-          console.log(uploadFileRes.data);
-          // alert ok
-          uni.showToast({
-            title: "上传成功",
-            icon: "success",
-            duration: 2000,
-          });
-        },
-        fail: (err) => {
-          console.log(err);
-          // alert fail
-          uni.showToast({
-            title: "上传失败",
-            icon: "none",
-            duration: 2000,
-          });
-        },
-      });
-    },
+// 这个 demo 只能在 h5 下生效，小程序不支持。
+const setTabBarPath = () => {
+  // https://uniapp.dcloud.net.cn/api/ui/tabbar.html#settabbaritem
+  // 页面绝对路径，必须在 pages 中先定义，被替换掉的 pagePath 不会变成普通页面（仍然需要使用 uni.switchTab 跳转）
+  uni.setTabBarItem({
+    index: 1,
+    text: "about222",
+    pagePath: "/pages/about2/index",
   });
+};
+
+const go2about = () => {
+  uni.switchTab({ url: "/pages/about2/index" });
+};
+
+const go2about2 = () => {
+  uni.navigateTo({ url: "/pages/about2/index" });
 };
 </script>
 

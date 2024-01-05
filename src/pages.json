@@ -9,7 +9,13 @@
     {
       "path": "pages/about/index",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        "navigationBarTitleText": "about"
+      }
+    },
+    {
+      "path": "pages/about2/index",
+      "style": {
+        "navigationBarTitleText": "about2"
       }
     }
   ],
@@ -18,6 +24,18 @@
     "custom": {
       "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
     }
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "home"
+      },
+      {
+        "pagePath": "pages/about/index",
+        "text": "about"
+      }
+    ]
   },
   "globalStyle": {
     "navigationBarTextStyle": "black",
