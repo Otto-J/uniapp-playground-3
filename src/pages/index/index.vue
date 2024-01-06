@@ -1,5 +1,7 @@
 <template>
   <div>
+    <h2>uni.chooseFile</h2>
+    <button @click="chooseFile">选择文件</button>
     <h2>uni.chooseImage 推荐使用 uni.chooseMedia</h2>
     <h2>uni.previewImage</h2>
     <button @click="previewImag">预览图片</button>
@@ -18,6 +20,26 @@ const previewImag = () => {
 
     showmenu: false,
     success: function () {
+      console.log("success");
+    },
+    fail: function (err) {
+      console.log("fail:" + err.errMsg);
+    },
+    complete: function () {
+      console.log("complete");
+    },
+  });
+};
+
+// h5 only
+const chooseFile = () => {
+  uni.chooseFile({
+    count: 1,
+    type: "image", // all video image
+    extension:[
+      // '.jpg',
+    'PNG'],
+    success: function (res) {
       console.log("success");
     },
     fail: function (err) {
