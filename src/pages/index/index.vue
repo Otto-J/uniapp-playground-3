@@ -4,6 +4,12 @@
     <view class="text-area">
       <text class="title">{{ title }}</text>
     </view>
+    <uni-easyinput>
+      <template #right>
+        <view>密码</view>
+      </template>
+    </uni-easyinput>
+
     <uni-card
       title="基础卡片"
       sub-title="副标题"
