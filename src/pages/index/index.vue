@@ -1,86 +1,131 @@
 <template>
-  <view class="content">
-    <image class="logo" src="/static/logo.png" />
-    <view class="text-area">
-      <text class="title">{{ title }}</text>
+  <view>
+    <view class="uni-title uni-common-pl">地区选择器</view>
+    <view class="uni-list">
+      <view class="uni-list-cell">
+        <view class="uni-list-cell-left"> 当前选择 </view>
+        <view class="uni-list-cell-db">
+          <picker @change="bindPickerChange" :value="index" :range="array">
+            <view class="uni-input">{{ array[index] }}</view>
+          </picker>
+        </view>
+      </view>
     </view>
-    <uni-card
-      title="基础卡片"
-      sub-title="副标题"
-      extra="额外信息"
-      thumbnail="https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png"
-    >
-      <text>这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。</text>
-    </uni-card>
-    <button @click="uploadImage">上传文件</button>
+
+    <view class="uni-title uni-common-pl">时间选择器</view>
+    <view class="uni-list">
+      <view class="uni-list-cell">
+        <view class="uni-list-cell-left"> 当前选择 </view>
+        <view class="uni-list-cell-db">
+          <picker mode="time" :value="time" start="09:01" end="21:01" @change="bindTimeChange">
+            <view class="uni-input">{{ time }}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+
+    <view class="uni-title uni-common-pl">日期选择器</view>
+    <view class="uni-list">
+      <view class="uni-list-cell">
+        <view class="uni-list-cell-left"> 当前选择 </view>
+        <view class="uni-list-cell-db">
+          <picker
+            mode="date"
+            :value="date"
+            :start="startDate"
+            :end="endDate"
+            fields="month"
+            @change="bindDateChange"
+          >
+            <view class="uni-input">{{ date }}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
   </view>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-const title = ref("Hello");
+import { ref, computed } from "vue";
 
-const uploadImage = () => {
-  uni.chooseVideo({
-    sourceType: ["camera", "album"],
-    success: (chooseImageRes) => {
-      const tempFilePaths = chooseImageRes.tempFilePath;
-      // debugger;
-      uni.uploadFile({
-        url: "http://192.168.31.60:3000/upload", //仅为示例，非真实的接口地址
-        filePath: tempFilePaths,
-        name: "file",
-        // only for alipay
-        hideLoading: true,
+const currentDate = new Date().toISOString().slice(0, 10);
 
-        success: (uploadFileRes) => {
-          console.log(uploadFileRes.data);
-          // alert ok
-          uni.showToast({
-            title: "上传成功",
-            icon: "success",
-            duration: 2000,
-          });
-        },
-        fail: (err) => {
-          console.log(err);
-          // alert fail
-          uni.showToast({
-            title: "上传失败",
-            icon: "none",
-            duration: 2000,
-          });
-        },
-      });
-    },
-  });
-};
+const title = "picker";
+const array = ["中国", "美国", "巴西", "日本"];
+const index = ref(0);
+const date = ref(currentDate);
+const time = ref("12:01");
+
+const startDate = computed(() => {
+  return getDate("start");
+});
+
+const endDate = computed(() => {
+  return getDate("end");
+});
+
+function bindPickerChange(e) {
+  console.log("picker发送选择改变，携带值为", e.detail.value);
+  index.value = e.detail.value;
+}
+
+function bindDateChange(e) {
+  date.value = e.detail.value;
+}
+
+function bindTimeChange(e) {
+  time.value = e.detail.value;
+}
+
+function getDate(type) {
+  const date = new Date();
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+
+  if (type === "start") {
+    year = year - 60;
+  } else if (type === "end") {
+    year = year + 2;
+  }
+  month = month > 9 ? month : "0" + month;
+  day = day > 9 ? day : "0" + day;
+  return `${year}-${month}-${day}`;
+}
 </script>
 
 <style>
-.content {
+.uni-title {
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px 0;
+  line-height: 1.5;
+}
+.uni-common-pl {
+  padding-left: 15px;
+}
+
+.uni-list {
+  background-color: #fff;
+  position: relative;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
-
-.logo {
-  height: 200rpx;
-  width: 200rpx;
-  margin-top: 200rpx;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 50rpx;
+.uni-list-cell-left {
+  white-space: nowrap;
+  font-size: 14px;
+  padding: 0 15px;
 }
-
-.text-area {
+.uni-list-cell {
+  position: relative;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
-
-.title {
-  font-size: 36rpx;
-  color: #8f8f94;
+.uni-list-cell-db,
+.uni-list-cell-right {
+  flex: 1;
 }
 </style>
