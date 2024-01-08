@@ -10,6 +10,8 @@
       </template>
     </uni-easyinput>
 
+    <u-search-bar />
+
     <uni-card
       title="基础卡片"
       sub-title="副标题"
@@ -24,6 +26,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import uSearchBar from "./u-search-bar.vue";
 const title = ref("Hello");
 
 const uploadImage = () => {
