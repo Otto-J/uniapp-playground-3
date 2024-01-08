@@ -1,16 +1,8 @@
 <template>
   <view class="content">
-    <image class="logo" src="/static/logo.png" />
-    <view class="text-area">
-      <text class="title">{{ title }}</text>
-    </view>
-    <uni-easyinput>
-      <template #right>
-        <view>密码</view>
-      </template>
-    </uni-easyinput>
-
-    <u-search-bar />
+    <button class="my_button" type="primary">hi button</button>
+    <!-- <uni-button type="primary">hi button</uni-button> -->
+    <!-- <uni-button>hi button</uni-button> -->
 
     <uni-card
       title="基础卡片"
@@ -27,7 +19,17 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import uSearchBar from "./u-search-bar.vue";
+import { onLoad } from "@dcloudio/uni-app";
 const title = ref("Hello");
+
+onLoad(() => {
+  console.log("onLoad");
+  // alert(
+  //   (navigator as any).connection ||
+  //     (navigator as any).webkitConnection ||
+  //     (navigator as any).mozConnection
+  // );
+});
 
 const uploadImage = () => {
   uni.chooseVideo({
@@ -66,7 +68,12 @@ const uploadImage = () => {
 };
 </script>
 
-<style>
+<style lang="scss">
+button[type="primary"] {
+  background-color: $uni-color-error;
+  color: #fff;
+}
+
 .content {
   display: flex;
   flex-direction: column;
