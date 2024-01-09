@@ -3,7 +3,12 @@
     {
       "path": "pages/index/index",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        "navigationBarTitleText": "uni-app",
+
+        "mp-weixin": {
+          "_desc": "这里是新增的，应该去 schema 增加，而且只有 微信支持",
+          "componentFramework": "glass-easel"
+        }
       }
     },
     {
