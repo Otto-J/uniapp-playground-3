@@ -1,9 +1,5 @@
 <template>
   <view class="content">
-    <image class="logo" src="/static/logo.png" />
-    <view class="text-area">
-      <text class="title">{{ title }}</text>
-    </view>
     <uni-card
       title="基础卡片"
       sub-title="副标题"
@@ -12,7 +8,18 @@
     >
       <text>这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。</text>
     </uni-card>
-    <button @click="uploadImage">上传文件</button>
+    <slotComp>
+      <template #header>
+        <view>我是 header slot</view>
+        <view>我是 header slot2</view>
+      </template>
+      <template #footer>
+        <view>我是 footer slot</view>
+        <view>我是 footer slot2</view>
+      </template>
+      <view>我是 default slot</view>
+      <view>我是 default slot2</view>
+    </slotComp>
   </view>
 </template>
 
@@ -20,41 +27,7 @@
 import { ref } from "vue";
 const title = ref("Hello");
 
-const uploadImage = () => {
-  uni.chooseVideo({
-    sourceType: ["camera", "album"],
-    success: (chooseImageRes) => {
-      const tempFilePaths = chooseImageRes.tempFilePath;
-      // debugger;
-      uni.uploadFile({
-        url: "http://192.168.31.60:3000/upload", //仅为示例，非真实的接口地址
-        filePath: tempFilePaths,
-        name: "file",
-        // only for alipay
-        hideLoading: true,
-
-        success: (uploadFileRes) => {
-          console.log(uploadFileRes.data);
-          // alert ok
-          uni.showToast({
-            title: "上传成功",
-            icon: "success",
-            duration: 2000,
-          });
-        },
-        fail: (err) => {
-          console.log(err);
-          // alert fail
-          uni.showToast({
-            title: "上传失败",
-            icon: "none",
-            duration: 2000,
-          });
-        },
-      });
-    },
-  });
-};
+import slotComp from "./slot-comp.vue";
 </script>
 
 <style>
