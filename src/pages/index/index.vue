@@ -1,24 +1,36 @@
 <template>
   <view class="content">
-    <image class="logo" src="/static/logo.png" />
-    <view class="text-area">
-      <text class="title">{{ title }}</text>
-    </view>
-    <uni-card
-      title="基础卡片"
-      sub-title="副标题"
-      extra="额外信息"
-      thumbnail="https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png"
-    >
-      <text>这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。</text>
-    </uni-card>
-    <button @click="uploadImage">上传文件</button>
+    <image class="logo" :src="imgSrc" />
+    <div>{{ imgSrc }}</div>
+    <button @tap="changeImage">切换图片</button>
   </view>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 const title = ref("Hello");
+
+// 静态全部声明
+// import a1 from "../../assets/a.jpg";
+// import a2 from "../../assets/b.png";
+
+const imgSrc = ref("/static/logo.png");
+
+// see https://cn.vitejs.dev/guide/features.html#glob-import
+const modules = import.meta.glob("../../assets/*");
+
+const changeImage = async () => {
+  const list = Object.keys(modules);
+
+  // random
+  const index = Math.floor(Math.random() * list.length);
+  console.log(index);
+
+  modules[list[index]]().then((res: any) => {
+    console.log(res);
+    imgSrc.value = res.default;
+  });
+};
 
 const uploadImage = () => {
   uni.chooseVideo({
