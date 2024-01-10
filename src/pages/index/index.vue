@@ -1,14 +1,14 @@
 <template>
-  <div>
-    <template v-for="item of list" :key="item.id">
-      <div>{{ item.id }}</div>
-    </template>
+  <div class="named-slot-demo">
+    <slotComp>
+      <template #header-slot>
+        <h1>header-slot</h1>
+      </template>
+    </slotComp>
   </div>
 </template>
 <script lang="ts" setup>
-import { ref } from "vue";
-
-const list = ref([{ id: 1 }, { id: 2 }]);
+import slotComp from "./slot-comp.vue";
 </script>
 
 <style></style>

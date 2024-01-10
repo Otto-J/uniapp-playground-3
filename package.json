@@ -72,5 +72,11 @@
     "vite": "5.0.11",
     "vite-plugin-inspect": "^0.8.1",
     "vue-tsc": "^1.0.24"
+  },
+  "pnpm": {
+    "overrides": {
+      "@dcloudio/uni-mp-compiler": "/Users/otto/mycode/dcloud/official-sources/fork-office-uni-app/packages/uni-mp-compiler"
+    }
   }
+  
 }

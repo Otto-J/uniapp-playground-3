@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@dcloudio/uni-mp-compiler': /Users/otto/mycode/dcloud/official-sources/fork-office-uni-app/packages/uni-mp-compiler
+
 dependencies:
   '@dcloudio/uni-app':
     specifier: 3.0.0-3090920231225001
@@ -1581,7 +1584,7 @@ packages:
     resolution: {integrity: sha512-zhS+I+KL7ecmni2lwy6KL5gpCqPQ/7gygkqBqdNIOq9eDB7c4rlPF6w+j7WmeBWeZPZpccYaQnsn9W7swpnmRA==}
     dependencies:
       '@dcloudio/uni-cli-shared': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
-      '@dcloudio/uni-mp-compiler': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
+      '@dcloudio/uni-mp-compiler': link:../official-sources/fork-office-uni-app/packages/uni-mp-compiler
       '@dcloudio/uni-mp-vite': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
       '@dcloudio/uni-mp-vue': 3.0.0-3090920231225001
       '@dcloudio/uni-mp-weixin': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
@@ -1602,30 +1605,11 @@ packages:
       - vue
     dev: false
 
-  /@dcloudio/uni-mp-compiler@3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12):
-    resolution: {integrity: sha512-q9pgXG1gtN9VMaEQj4jlmHBkKAwFsKTCsZu4FsH4kpFoQoSgdEFH8VAHTWKA9reaUVLJGInO0Nsd+t9rZJi3EA==}
-    dependencies:
-      '@babel/generator': 7.23.6
-      '@babel/parser': 7.23.6
-      '@babel/types': 7.23.6
-      '@dcloudio/uni-cli-shared': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
-      '@dcloudio/uni-shared': 3.0.0-3090920231225001
-      '@vue/compiler-core': 3.2.47
-      '@vue/compiler-dom': 3.2.47
-      '@vue/shared': 3.2.47
-      estree-walker: 2.0.2
-    transitivePeerDependencies:
-      - postcss
-      - supports-color
-      - ts-node
-      - vue
-    dev: false
-
   /@dcloudio/uni-mp-jd@3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12):
     resolution: {integrity: sha512-n+zDI+dRyVgSnp8vcLnflxs7usMEy/sfx2FWB77XswPHiMOi8Wz7SK/CQln/ScKD0pRWDPiXcLh4WXS1u3H0Hg==}
     dependencies:
       '@dcloudio/uni-cli-shared': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
-      '@dcloudio/uni-mp-compiler': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
+      '@dcloudio/uni-mp-compiler': link:../official-sources/fork-office-uni-app/packages/uni-mp-compiler
       '@dcloudio/uni-mp-vite': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
       '@dcloudio/uni-mp-vue': 3.0.0-3090920231225001
       '@dcloudio/uni-shared': 3.0.0-3090920231225001
@@ -1641,7 +1625,7 @@ packages:
     resolution: {integrity: sha512-Z3VFtDNDUEGkHOs5hzB+HiOuJWxGsLh6jQYlGLwXFNmWJFYWGaEBsAA+NztWOB4fRB2JeYSoTu78Al3MWFRwzQ==}
     dependencies:
       '@dcloudio/uni-cli-shared': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
-      '@dcloudio/uni-mp-compiler': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
+      '@dcloudio/uni-mp-compiler': link:../official-sources/fork-office-uni-app/packages/uni-mp-compiler
       '@dcloudio/uni-mp-vite': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
       '@dcloudio/uni-mp-vue': 3.0.0-3090920231225001
       '@dcloudio/uni-mp-weixin': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
@@ -1661,7 +1645,7 @@ packages:
     resolution: {integrity: sha512-LuXWe7vf2fncf1Hj0PpxKYCRWYwqhcz3kKkauNa9nVNjEwiD83UthW5oDxVWMCklIFjKw91mhe+zqq2Oc8bl1w==}
     dependencies:
       '@dcloudio/uni-cli-shared': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
-      '@dcloudio/uni-mp-compiler': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
+      '@dcloudio/uni-mp-compiler': link:../official-sources/fork-office-uni-app/packages/uni-mp-compiler
       '@dcloudio/uni-mp-toutiao': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
       '@dcloudio/uni-mp-vite': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
       '@dcloudio/uni-mp-vue': 3.0.0-3090920231225001
@@ -1695,7 +1679,7 @@ packages:
     resolution: {integrity: sha512-g6fpZeUS2mBDIalhQEKXnkMAKUP+xGz4poJrjABMRu6L2ayXjOCYHFC0uZEIoagcD5zb3UN4ZrPaQvFtcErqRA==}
     dependencies:
       '@dcloudio/uni-cli-shared': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
-      '@dcloudio/uni-mp-compiler': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
+      '@dcloudio/uni-mp-compiler': link:../official-sources/fork-office-uni-app/packages/uni-mp-compiler
       '@dcloudio/uni-mp-vite': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
       '@dcloudio/uni-mp-vue': 3.0.0-3090920231225001
       '@dcloudio/uni-shared': 3.0.0-3090920231225001
@@ -1713,7 +1697,7 @@ packages:
     dependencies:
       '@dcloudio/uni-cli-shared': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
       '@dcloudio/uni-i18n': 3.0.0-3090920231225001
-      '@dcloudio/uni-mp-compiler': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
+      '@dcloudio/uni-mp-compiler': link:../official-sources/fork-office-uni-app/packages/uni-mp-compiler
       '@dcloudio/uni-mp-vue': 3.0.0-3090920231225001
       '@dcloudio/uni-shared': 3.0.0-3090920231225001
       '@vue/compiler-sfc': 3.2.47
@@ -1759,7 +1743,7 @@ packages:
     resolution: {integrity: sha512-pY/OCLGNLChmTShAG41sb0AGxqJCqsioNu4fIEKcC2dj8JFOUdcFBYS7ZvhrVrVYCErM0H3GcmLla0cJZfUCjQ==}
     dependencies:
       '@dcloudio/uni-cli-shared': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
-      '@dcloudio/uni-mp-compiler': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
+      '@dcloudio/uni-mp-compiler': link:../official-sources/fork-office-uni-app/packages/uni-mp-compiler
       '@dcloudio/uni-mp-vite': 3.0.0-3090920231225001(postcss@8.4.32)(vue@3.3.12)
       '@dcloudio/uni-mp-vue': 3.0.0-3090920231225001
       '@dcloudio/uni-shared': 3.0.0-3090920231225001
