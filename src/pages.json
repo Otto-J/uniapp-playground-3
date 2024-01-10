@@ -3,7 +3,17 @@
     {
       "path": "pages/index/index",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        "navigationBarTitleText": "uni-app",
+        "h5": {
+          "titleNView": {
+            "searchInput": {
+              "disabled": false,
+              "backgroundColor": "#F8F8F8",
+              "placeholder": "搜索2",
+              "placeholderColor": "#ccc"
+            }
+          }
+        }
       }
     },
     {
