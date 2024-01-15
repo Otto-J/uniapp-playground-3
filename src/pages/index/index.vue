@@ -17,26 +17,38 @@
 import { ref } from "vue";
 import test1 from "./test1.vue";
 import { onMounted } from "vue";
+import { onLoad } from "@dcloudio/uni-app";
 const comp = ref();
 const title = ref("Hello");
 const queryChild = () => {
-  const query = uni.createSelectorQuery().in();
+  // #ifdef MP-WEIXIN
+  console.log("微信小程序");
+  const query = wx.createSelectorQuery().in(this)
+  query.select("div").boundingClientRect()
+  query.exec(function(res){
+    console.log(res)
+  })
+  // const query = uni.createSelectorQuery().in(this);
   // const query = uni.createSelectorQuery().in(comp.value);
-  query
-    .select(".test1 >>> .test1-1")
-    .boundingClientRect((data) => {
-      if (Array.isArray(data)) {
-        console.log("得到布局位置信息" + JSON.stringify(data[0]));
-        console.log("节点离页面顶部的距离为" + data[0]?.top);
-      } else {
-        console.log("得到布局位置信息" + JSON.stringify(data));
-        console.log("节点离页面顶部的距离为" + data.top);
-      }
-    })
-    .exec();
+  // query
+  //   .select(".test1")
+  //   // .select(".test1 >>> .test1-1")
+  //   .boundingClientRect((data) => {
+  //     console.log(data)
+  //     // if (Array.isArray(data)) {
+  //     //   console.log("得到布局位置信息" + JSON.stringify(data[0]));
+  //     //   console.log("节点离页面顶部的距离为" + data[0]?.top);
+  //     // } else {
+  //     //   console.log("得到布局位置信息" + JSON.stringify(data));
+  //     //   console.log("节点离页面顶部的距离为" + data.top);
+  //     // }
+  //   })
+  //   .exec();
+  // #endif
+
 };
 
-onMounted(() => {
+onLoad(() => {
   queryChild();
 });
 </script>
@@ -47,6 +59,10 @@ onMounted(() => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  /* width: 800rpx; */
+  outline: 1px solid red;
+  margin: 30rpx auto;
+  padding: 40rpx;
 }
 
 .logo {
