@@ -1,33 +1,61 @@
 <template>
   <view class="content">
-    <uni-card
+    <div
       title="基础卡片"
       sub-title="副标题"
       extra="额外信息"
       thumbnail="https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/unicloudlogo.png"
     >
-      <test1 ref="comp"></test1>
-      <div class="abc" style="outline: 1px solid red">hi</div>
-    </uni-card>
+      <test1 id="ccc" ref="comp"></test1>
+      <div
+        class="abc"
+        id="abc"
+        data-name="name"
+        data-age="18"
+        style="outline: 1px solid red; background-color: aqua"
+      >
+        hi
+      </div>
+    </div>
     <button @click="queryChild">上传文件</button>
   </view>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import test1 from "./test1.vue";
-import { onMounted } from "vue";
+import test1 from "@/component/test1.vue";
 import { onLoad } from "@dcloudio/uni-app";
+import { onMounted, ref } from "vue";
 const comp = ref();
-const title = ref("Hello");
+// const title = ref("Hello");
 const queryChild = () => {
-  // #ifdef MP-WEIXIN
-  console.log("微信小程序");
-  const query = wx.createSelectorQuery().in(this)
-  query.select("div").boundingClientRect()
-  query.exec(function(res){
-    console.log(res)
-  })
+  try {
+    const query = uni.createSelectorQuery(); //.in(this);
+    // const query = uni.createSelectorQuery().in(comp);
+    query
+      // .select(".abc")
+      // .select("#ccc   #abc11")
+      .select("#ccc >>>  #abc11")
+      .fields(
+        {
+          id: true,
+          dataset: true,
+          size: true,
+          rect: true,
+          properties: ["scrollX", "scrollY"],
+          computedStyle: ["margin", "backgroundColor"],
+          context: true,
+        },
+        (res) => {
+          console.log(4, res);
+        }
+      )
+      .exec(function (res) {
+        console.log(5, res);
+      });
+  } catch (error) {
+    console.log("error 报错了", error);
+  }
+
   // const query = uni.createSelectorQuery().in(this);
   // const query = uni.createSelectorQuery().in(comp.value);
   // query
@@ -44,11 +72,9 @@ const queryChild = () => {
   //     // }
   //   })
   //   .exec();
-  // #endif
-
 };
 
-onLoad(() => {
+onMounted(() => {
   queryChild();
 });
 </script>

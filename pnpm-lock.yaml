@@ -4,6 +4,10 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@dcloudio/uni-api': /Users/otto/mycode/dcloud/official-sources/fork-office-uni-app/packages/uni-api
+  '@dcloudio/uni-h5': /Users/otto/mycode/dcloud/official-sources/fork-office-uni-app/packages/uni-h5
+
 dependencies:
   '@dcloudio/uni-app':
     specifier: 3.0.0-alpha-4000020231218001
@@ -15,8 +19,8 @@ dependencies:
     specifier: 3.0.0-alpha-4000020231218001
     version: 3.0.0-alpha-4000020231218001(postcss@8.4.32)(vue@3.3.12)
   '@dcloudio/uni-h5':
-    specifier: 3.0.0-alpha-4000020231218001
-    version: 3.0.0-alpha-4000020231218001(postcss@8.4.32)(vue@3.3.12)
+    specifier: /Users/otto/mycode/dcloud/official-sources/fork-office-uni-app/packages/uni-h5
+    version: link:../official-sources/fork-office-uni-app/packages/uni-h5
   '@dcloudio/uni-mp-alipay':
     specifier: 3.0.0-alpha-4000020231218001
     version: 3.0.0-alpha-4000020231218001(postcss@8.4.32)(vue@3.3.12)
@@ -59,6 +63,9 @@ dependencies:
   vue-i18n:
     specifier: ^9.8.0
     version: 9.8.0(vue@3.3.12)
+  vue-router:
+    specifier: ^4.2.5
+    version: 4.2.5(vue@3.3.12)
 
 devDependencies:
   '@dcloudio/types':
@@ -1498,60 +1505,8 @@ packages:
     resolution: {integrity: sha512-HU8rtSndF1wMvQQeK95Jp28QI05BvtocJcotBb5eme7Q8bAV6mIqtGhII6d1bs1SoH51aO6KBgNHyttFm3zXvg==}
     dependencies:
       '@dcloudio/uni-cloud': 3.0.0-alpha-4000020231218001(postcss@8.4.32)(vue@3.3.12)
-      '@dcloudio/uni-h5': 3.0.0-alpha-4000020231218001(postcss@8.4.32)(vue@3.3.12)
+      '@dcloudio/uni-h5': link:../official-sources/fork-office-uni-app/packages/uni-h5
       '@dcloudio/uni-i18n': 3.0.0-alpha-4000020231218001
-    transitivePeerDependencies:
-      - postcss
-      - supports-color
-      - ts-node
-      - vue
-    dev: false
-
-  /@dcloudio/uni-h5-vite@3.0.0-alpha-4000020231218001(postcss@8.4.32)(vue@3.3.12):
-    resolution: {integrity: sha512-DgKJM6g9LNelcUe5NKRpe3SAkRnViJeo8tihj2+KSzskVA4asiSN7318DKZipwEHDm4Ffg39bZmbh99ViPdOYA==}
-    dependencies:
-      '@dcloudio/uni-cli-shared': 3.0.0-alpha-4000020231218001(postcss@8.4.32)(vue@3.3.12)
-      '@dcloudio/uni-shared': 3.0.0-alpha-4000020231218001
-      '@rollup/pluginutils': 4.2.1
-      '@vue/compiler-dom': 3.3.11
-      '@vue/compiler-sfc': 3.3.11
-      '@vue/server-renderer': 3.3.11(vue@3.3.12)
-      '@vue/shared': 3.3.11
-      debug: 4.3.4
-      fs-extra: 10.1.0
-      mime: 3.0.0
-      module-alias: 2.2.3
-    transitivePeerDependencies:
-      - postcss
-      - supports-color
-      - ts-node
-      - vue
-    dev: false
-
-  /@dcloudio/uni-h5-vue@3.0.0-alpha-4000020231218001(vue@3.3.12):
-    resolution: {integrity: sha512-VqZH7X4uirMF2NPj0TdqP1MV6lCzlqbn6Yvoh+Ic24qb7C3OzY1KFJLmWLDCX7/Jr4K2lfuIQHKvFzqgE8Sieg==}
-    dependencies:
-      '@dcloudio/uni-shared': 3.0.0-alpha-4000020231218001
-      '@vue/server-renderer': 3.3.11(vue@3.3.12)
-    transitivePeerDependencies:
-      - vue
-    dev: false
-
-  /@dcloudio/uni-h5@3.0.0-alpha-4000020231218001(postcss@8.4.32)(vue@3.3.12):
-    resolution: {integrity: sha512-+TuZDyrfm/PLn1BYiP3mF+dT8rPz3Q8X5J3u/t9/G8B4Xu6Nv0vRK2+9Ye83oso5qQ5n5ihypcqItwDCUj7lug==}
-    dependencies:
-      '@dcloudio/uni-h5-vite': 3.0.0-alpha-4000020231218001(postcss@8.4.32)(vue@3.3.12)
-      '@dcloudio/uni-h5-vue': 3.0.0-alpha-4000020231218001(vue@3.3.12)
-      '@dcloudio/uni-i18n': 3.0.0-alpha-4000020231218001
-      '@dcloudio/uni-shared': 3.0.0-alpha-4000020231218001
-      '@vue/server-renderer': 3.3.11(vue@3.3.12)
-      '@vue/shared': 3.3.11
-      debug: 4.3.4
-      localstorage-polyfill: 1.0.1
-      postcss-selector-parser: 6.0.13
-      safe-area-insets: 1.4.1
-      vue-router: 4.2.5(vue@3.3.12)
-      xmlhttprequest: 1.8.0
     transitivePeerDependencies:
       - postcss
       - supports-color
@@ -5249,11 +5204,6 @@ packages:
       mlly: 1.4.2
       pkg-types: 1.0.3
 
-  /localstorage-polyfill@1.0.1:
-    resolution: {integrity: sha512-m4iHVZxFH5734oQcPKU08025gIz2+4bjWR9lulP8ZYxEJR0BpA0w32oJmkzh8y3UI9ci7xCBehQDc3oA1X+VHw==}
-    engines: {node: '>=6'}
-    dev: false
-
   /locate-path@5.0.0:
     resolution: {integrity: sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==}
     engines: {node: '>=8'}
@@ -5924,10 +5874,6 @@ packages:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
     dependencies:
       queue-microtask: 1.2.3
-
-  /safe-area-insets@1.4.1:
-    resolution: {integrity: sha512-r/nRWTjFGhhm3w1Z6Kd/jY11srN+lHt2mNl1E/emQGW8ic7n3Avu4noibklfSM+Y34peNphHD/BSZecav0sXYQ==}
-    dev: false
 
   /safe-buffer@5.2.1:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
@@ -6660,11 +6606,6 @@ packages:
   /xmlchars@2.2.0:
     resolution: {integrity: sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==}
     dev: true
-
-  /xmlhttprequest@1.8.0:
-    resolution: {integrity: sha512-58Im/U0mlVBLM38NdZjHyhuMtCqa61469k2YP/AaPbvCoV9aQGUpbJBj1QRm2ytRiVQBD/fsw7L2bJGDVQswBA==}
-    engines: {node: '>=0.4.0'}
-    dev: false
 
   /xregexp@3.1.0:
     resolution: {integrity: sha512-4Y1x6DyB8xRoxosooa6PlGWqmmSKatbzhrftZ7Purmm4B8R4qIEJG1A2hZsdz5DhmIqS0msC0I7KEq93GphEVg==}
