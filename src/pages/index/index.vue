@@ -1,22 +1,41 @@
 <template>
   <div>
-    <div>微信旧版 canvas</div>
+    <div>通用</div>
     <div style="outline: 1px solid red">
-      <canvas id="myCanvas" canvas-id="myCanvas" style="height: 150px" />
+      <canvas
+        @error="canvasIdErrorCallback"
+        id="myCanvas3"
+        canvas-id="myCanvas3"
+        style="height: 150px"
+      />
     </div>
 
-    <div>微信新版 canvas</div>
-    <div style="outline: 1px solid green">
-      <canvas id="myCanvas2" canvas-id="myCanvas2" type="2d" style="height: 150px" />
-    </div>
+    <!-- #ifdef H5 -->
+    <H5Canvas />
+    <!-- #endif -->
+
+    <!-- #ifdef MP-WEIXIN -->
+    <wxCanvas2 />
+    <!-- #endif -->
   </div>
 </template>
 <script lang="ts" setup>
-import { onLoad } from "@dcloudio/uni-app";
+import { onMounted } from "vue";
 
-/** 旧版 canvas */
-{
-  const old_context = uni.createCanvasContext("myCanvas");
+// #ifdef H5
+import H5Canvas from "./h5.vue";
+// #endif
+
+// #ifdef MP-WEIXIN
+import wxCanvas2 from "./wx.vue";
+// #endif
+
+const canvasIdErrorCallback = (e: any) => {
+  console.error(e.detail.errMsg);
+};
+
+function drawCanvasHome() {
+  const old_context = uni.createCanvasContext("myCanvas3");
   // 若干绘制调用
   // 绘制红色正方形
   old_context.fillStyle = "rgb(200, 0, 0)";
@@ -30,51 +49,8 @@ import { onLoad } from "@dcloudio/uni-app";
     console.log("draw done");
   });
 }
-/** 新版 canvas */
-{
-  onLoad(() => {
-    uni
-      .createSelectorQuery()
-      .select("#myCanvas2") // 在 WXML 中填入的 id
-      .fields({ node: true, size: true })
-      .exec((res) => {
-        // Canvas 对象
-        const canvas = res[0].node;
 
-        // 这里可以执行 canvas 提供的方法
-        // https://developers.weixin.qq.com/miniprogram/dev/api/canvas/Canvas.requestAnimationFrame.html
-        console.log(
-          4,
-          canvas.requestAnimationFrame,
-          typeof canvas.requestAnimationFrame === "function"
-        );
-
-        // 渲染上下文
-        const ctx = canvas.getContext("2d");
-
-        // Canvas 画布的实际绘制宽高
-        const width = res[0].width;
-        const height = res[0].height;
-
-        // 初始化画布大小
-        const dpr = uni.getWindowInfo().pixelRatio;
-        canvas.width = width * dpr;
-        canvas.height = height * dpr;
-        ctx.scale(dpr, dpr);
-
-        // 清空画布
-        ctx.clearRect(0, 0, width, height);
-
-        // 绘制红色正方形
-        ctx.fillStyle = "rgb(200, 0, 0)";
-        ctx.fillRect(10, 10, 50, 50);
-
-        // 绘制蓝色半透明正方形
-        ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
-        ctx.fillRect(30, 30, 50, 50);
-      });
-  });
-}
+onMounted(() => {
+  drawCanvasHome();
+});
 </script>
-
-<style></style>
