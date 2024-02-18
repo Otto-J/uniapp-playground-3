@@ -6,6 +6,7 @@
         @error="canvasIdErrorCallback"
         id="myCanvas3"
         canvas-id="myCanvas3"
+        @touchstart="onTouchStart"
         style="height: 150px"
       />
     </div>
@@ -32,6 +33,11 @@ import wxCanvas2 from "./wx.vue";
 
 const canvasIdErrorCallback = (e: any) => {
   console.error(e.detail.errMsg);
+};
+
+const onTouchStart = (e: any) => {
+  console.log("touch start", e);
+  uni.showToast({ title: "touch start", icon: "none" });
 };
 
 function drawCanvasHome() {
