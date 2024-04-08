@@ -3,8 +3,8 @@
     <xr-start
       disable-scroll
       id="main-frame"
-      :width="renderWidth"
-      :height="renderHeight"
+      width="100"
+      height="200"
       :style="`width:${width}px;height:${height}px`"
     />
   </div>
@@ -24,6 +24,10 @@ onLoad(() => {
   const _width = info.windowWidth;
   const _height = info.windowHeight;
   const _dpi = info.pixelRatio;
+
+  console.log('像素',_width,_height,_dpi)
+  console.log('实际像素',_width * _dpi,_height * _dpi)
+
 
   width.value = _width;
   height.value = _height;
