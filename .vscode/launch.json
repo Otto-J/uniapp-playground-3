@@ -1,0 +1,47 @@
+{
+  // 使用 IntelliSense 了解相关属性。
+  // 悬停以查看现有属性的描述。
+  // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "抖音 Attach",
+      "port": 9229,
+      "request": "attach",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "启动 dev 微信小程序",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev:mp-weixin"],
+      "stopOnEntry": true,
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "启动 dev 抖音小程序",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev:mp-toutiao"],
+      "stopOnEntry": true,
+      
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "启动 dev 抖音小程序 attach",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev:mp-toutiao"],
+      "stopOnEntry": true,
+      
+      "skipFiles": ["<node_internals>/**"]
+    },
+
+  ]
+}

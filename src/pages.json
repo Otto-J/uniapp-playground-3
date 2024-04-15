@@ -12,6 +12,11 @@
         "navigationBarTitleText": "uni-app"
       }
     }
+    // #ifdef MP-TOUTIAO
+		,{
+			"path": "ext://microapp-trade-plugin"
+		}
+		// #endif
   ],
   "easycom": {
     "autoscan": true,
