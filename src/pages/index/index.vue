@@ -13,6 +13,7 @@
       <text>这是一个带头像和双标题的基础卡片，此示例展示了一个完整的卡片。</text>
     </uni-card>
     <button @click="uploadImage">上传文件</button>
+    <a1-component >自定义 slot 内容</a1-component>
   </view>
 </template>
 

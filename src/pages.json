@@ -3,7 +3,10 @@
     {
       "path": "pages/index/index",
       "style": {
-        "navigationBarTitleText": "uni-app"
+        "navigationBarTitleText": "uni-app",
+        "usingComponents": {
+          "a1-component":"/wxcomponents/a1/index"
+        }
       }
     },
     {
