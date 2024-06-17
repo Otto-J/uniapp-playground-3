@@ -3,27 +3,11 @@
     <view class="page-section">
       <view class="page-section-demo">
         <!-- :controls="controls" -->
-        <map
-          id="map"
-          :longitude="longitude"
-          :latitude="latitude"
-          :scale="scale"
-          :markers="markers"
-          :polyline="polyline"
-          :polygon="polygon"
-          :circles="circles"
-          :panels="panels"
-          @markerTap="markertap"
-          @controlTap="controltap"
-          @panelTap="onPanelTap"
-          @regionChange="regionchange"
-          @tap="tap"
-          @calloutTap="callouttap"
-          show-location
-          style="width: 100%; height: 200px"
-          :include-points="includePoints"
-          :ground-overlays="groundOverlays"
-        >
+        <map id="map" :longitude="longitude" :latitude="latitude" :scale="scale" :markers="xmlMarkers"
+          :polyline="polyline" :polygon="polygon" :circles="circles" :panels="panels" @markerTap="markertap"
+          @controlTap="controltap" @panelTap="onPanelTap" @regionChange="regionchange" @tap="tap"
+          @calloutTap="callouttap" show-location style="width: 100%; height: 200px" :include-points="includePoints"
+          :ground-overlays="groundOverlays">
         </map>
       </view>
     </view>
@@ -60,7 +44,7 @@ import { ref } from "vue";
 import { onReady } from "@dcloudio/uni-app";
 import {
   markers,
-  panels,
+  panels, xmlMarkers,
   animMarker,
   labelMarker,
   customCalloutMarker,
@@ -355,7 +339,7 @@ page {
   align-items: center;
 }
 
-.page-section-btns > view {
+.page-section-btns>view {
   flex: 1;
   height: 84rpx;
   display: flex;
@@ -363,7 +347,8 @@ page {
   justify-content: space-around;
   color: #49a9ee;
 }
-.page-section-btns > view + view {
+
+.page-section-btns>view+view {
   border-left: 1px solid #ddd;
 }
 

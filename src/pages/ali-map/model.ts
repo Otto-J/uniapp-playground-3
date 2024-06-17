@@ -12,6 +12,39 @@ export const markers = [
     },
   },
 ];
+
+// layout xml
+export const xmlMarkers = [
+  {
+    id: 5,
+    latitude: 30.266786,
+    longitude: 120.10675,
+    width: 60,
+    height: 60,
+    iconLayout: {
+      params: {
+        count: '1',
+      },
+      src: '/static/marker_icon.xml',
+    },
+    customCallout: {
+      canShowOnTap: true,
+      layout: {
+        params: {
+          title: '标题栏',
+          bgColor: '#FF00FF',
+        },
+        src: '/static/marker_customcallout.xml',
+      },
+      layoutBubble: {
+        style: 'bubble',
+        bgColor: '#898986',
+        borderRadius: 0,
+      },
+    },
+  },
+];
+
 export const panels = [
   {
     id: 6,
