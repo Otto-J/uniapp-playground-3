@@ -57,6 +57,7 @@
     "@dcloudio/uni-mp-xhs": "3.0.0-alpha-4010520240507001",
     "@dcloudio/uni-quickapp-webview": "3.0.0-alpha-4010520240507001",
     "@dcloudio/uni-ui": "^1.4.28",
+    "pinia": "^2.1.7",
     "sass": "^1.69.5",
     "vue": "^3.4.27",
     "vue-i18n": "^9.8.0"
